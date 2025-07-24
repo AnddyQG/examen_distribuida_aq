@@ -33,13 +33,12 @@ public class TodosLifeCycle {
 
     String serviceId;
 
-    // Necesitamos escuchar 2 eventos: Inicializacion y cuando se detiene
-    // Cuando arranca
+
     void init(@Observes StartupEvent event, Vertx vertx) throws Exception {
         try {
             System.out.println("Iniciando servicio de todos...");
 
-            // Obtenemos host y puerto de la configuracion
+
             ConsulClientOptions options = new ConsulClientOptions()
                     .setHost(consulHost)
                     .setPort(consulPort);

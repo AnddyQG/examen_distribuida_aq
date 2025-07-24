@@ -74,19 +74,18 @@ public class TodoRest {
     @GET
     @Path("/usuario/{userId}")
     public Response getTodosByUserId(@PathParam("userId") Integer userId) {
-        // Filtrar todos por userId
+
         List<Todo> todos = repository.listAll().stream()
                 .filter(t -> t.getUserId().equals(userId))
                 .toList();
 
-        // Obtener solo los datos deseados del usuario
+
         UserDTO user = userClient.getUserById(userId);
 
-        // Construir respuesta
+
         Map<String, Object> result = new HashMap<>();
         result.put("todos", todos);
-        result.put("user", user); // El DTO ya filtra solo los campos que tú definiste
-
+        result.put("user", user);
         return Response.ok(result).build();
     }
 
